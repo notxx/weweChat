@@ -1,5 +1,6 @@
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import clazz from 'classname';
 import delegate from 'delegate';
 
@@ -32,7 +33,12 @@ export default class Emoji extends Component {
     renderEmoji(emoji) {
         return emoji.map((e, index) => {
             var { key, className } = e;
-            return <a key={index} title={key} className={className} />;
+            return (
+                <a
+                    className={className}
+                    key={index}
+                    title={key} />
+            );
         });
     }
 

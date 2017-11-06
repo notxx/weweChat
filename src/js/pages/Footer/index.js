@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
+import clazz from 'classname';
 
 import classes from './style.css';
 import Home from './Home';
@@ -19,20 +20,35 @@ export default class Footer extends Component {
         return (
             <footer className={classes.footer}>
                 <nav>
-                    <Link className="link" to="/" tabIndex="-1">
-                        <span className={pathname === '/' && classes.active}>
+                    <Link
+                        className="link"
+                        tabIndex="-1"
+                        to="/">
+                        <span className={clazz({
+                            [classes.active]: pathname === '/'
+                        })}>
                             <i className="icon-ion-android-chat" />
                         </span>
                     </Link>
 
-                    <Link className="link" to="/contacts" tabIndex="-1">
-                        <span className={pathname === '/contacts' && classes.active}>
+                    <Link
+                        className="link"
+                        tabIndex="-1"
+                        to="/contacts">
+                        <span className={clazz({
+                            [classes.active]: pathname === '/contacts'
+                        })}>
                             <i className="icon-ion-ios-book-outline" />
                         </span>
                     </Link>
 
-                    <Link className="link" to="/settings" tabIndex="-1">
-                        <span className={pathname === '/settings' && classes.active}>
+                    <Link
+                        className="link"
+                        tabIndex="-1"
+                        to="/settings">
+                        <span className={clazz({
+                            [classes.active]: pathname === '/settings'
+                        })}>
                             <i className="icon-ion-android-more-vertical" />
                         </span>
                     </Link>

@@ -1,5 +1,6 @@
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import './style.global.css';
 
@@ -27,10 +28,10 @@ export default class Avatar extends Component {
         return (
             <img
                 className={`Avatar fade fadein ${this.props.className}`}
-                src={this.props.src}
                 onClick={this.props.onClick}
+                onError={e => this.handleError(e)}
                 onLoad={e => this.handleLoad(e)}
-                onError={e => this.handleError(e)} />
+                src={this.props.src} />
         );
     }
 }

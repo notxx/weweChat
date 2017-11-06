@@ -138,6 +138,7 @@ export default class ChatContent extends Component {
                     </div>
                 `;
             case 47:
+            case 49 + 8:
                 // External emoji
                 let emoji = message.emoji;
 
@@ -288,7 +289,7 @@ export default class ChatContent extends Component {
                     [classes.isText]: type === 1 && !message.location,
                     [classes.isLocation]: type === 1 && message.location,
                     [classes.isImage]: type === 3,
-                    [classes.isEmoji]: type === 47,
+                    [classes.isEmoji]: type === 47 || type === 49 + 8,
                     [classes.isVoice]: type === 34,
                     [classes.isContact]: type === 42,
                     [classes.isVideo]: type === 43,
@@ -625,19 +626,26 @@ export default class ChatContent extends Component {
                         <div>
                             <header>
                                 <div className={classes.info}>
-                                    <p title={title} dangerouslySetInnerHTML={{__html: title}} />
+                                    <p
+                                        dangerouslySetInnerHTML={{__html: title}}
+                                        title={title} />
 
                                     <span
-                                        title={signature}
                                         className={classes.signature}
+                                        dangerouslySetInnerHTML={{__html: signature || 'No Signature'}}
                                         onClick={e => this.props.showMembers(user)}
-                                        dangerouslySetInnerHTML={{__html: signature || 'No Signature'}} />
+                                        title={signature} />
                                 </div>
 
-                                <i className="icon-ion-android-more-vertical" onClick={() => this.showMenu()} />
+                                <i
+                                    className="icon-ion-android-more-vertical"
+                                    onClick={() => this.showMenu()} />
                             </header>
 
-                            <div className={classes.messages} ref="viewport" onScroll={e => this.handleScroll(e)}>
+                            <div
+                                className={classes.messages}
+                                onScroll={e => this.handleScroll(e)}
+                                ref="viewport">
                                 {
                                     this.renderMessages(messages.get(user.UserName), user)
                                 }
@@ -647,15 +655,17 @@ export default class ChatContent extends Component {
                         <div className={clazz({
                             [classes.noselected]: !user,
                         })}>
-                            <img src="assets/images/noselected.png" className="disabledDrag" />
+                            <img
+                                className="disabledDrag"
+                                src="assets/images/noselected.png" />
                             <h1>No Chat selected :(</h1>
                         </div>
                     )
                 }
 
                 <div
-                    ref="tips"
-                    className={classes.tips}>
+                    className={classes.tips}
+                    ref="tips">
                     Unread message.
                 </div>
             </div>
